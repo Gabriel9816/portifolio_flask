@@ -6,7 +6,6 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Semana 3</title>
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
-    <link href='#' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/calculadora.css') }}">
@@ -32,9 +31,10 @@
                 <div class="px-4 py-3">
                     <h5 class="mb-0">Semana 1</h5>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0"> </p>
-                        <p class="font-italic mb-0"> </p>
-                        <p class="font-italic mb-0"> </p>
+                        <p class="font-italic mb-0"> ■ Apresentação do <a href="/plano-de-ensino">Plano de Ensino</a> </p>
+                        <p class="font-italic mb-0"> ■ Discussão sobre aderencia à Ementa Proposta </p>
+                        <p class="font-italic mb-0"> ■ Apresentação das Atividades Avaliativas </p>
+                        <p class="font-italic mb-0"> ■ Detalhamento do Cronograma de Atividades </p>
                     </div>
                 </div>
                 <div class="py-4 px-4">
@@ -49,16 +49,16 @@
                     <h5 class="mb-0">Semana 3</h5>
                     <p class="font-italic mb-0">Conteúdo: Manipulação e envio de dados entre Python e HTML</p>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0"> 
+                        <p class="font-italic mb-0">
                             <li>Retornar e capturar valores de uma lista:<br>
                                 <ol>
-                                
+
                                     <li>Alex</li>
-                                
+
                                     <li>Samsung</li>
-                                
+
                                     <li>Stela</li>
-                                
+
                                 </ol>
                                 <form action="http://10.8.39.8:5000/tads-teti" method="POST">
                                     <input type="text" name="nome" placeholder="Digite novo Nome">
@@ -76,37 +76,66 @@
                             Criar uma calculadora.
                         </p>
                         <p class="font-italic mb-0">
-                            Conversão de decimal para binario.
+                            Conversão de decimal para binario nessa calculadora.
                         </p>
                         <p class="font-italic mb-0">
                             Criar uma calculadora em aplha numerica capaz de converter qualquer texto em binario.
                         </p>
                         <p class="font-italic mb-0">
+                            binario que for gerado seja convertido em um array com 480 colunas.
+                        </p>
+                        <p class="font-italic mb-0">
                         <div class="container">
-                            <div class="calculator">
-                                <div class="calculator__display">0</div>
-                                <div class="calculator__keys">
-                                    <button class="key--operator" data-action="add">+</button>
-                                    <button class="key--operator" data-action="subtract">-</button>
-                                    <button class="key--operator" data-action="multiply">&times;</button>
-                                    <button class="key--operator" data-action="divide">÷</button>
-                                    <button>7</button>
-                                    <button>8</button>
-                                    <button>9</button>
-                                    <button>4</button>
-                                    <button>5</button>
-                                    <button>6</button>
-                                    <button>1</button>
-                                    <button>2</button>
-                                    <button>3</button>
-                                    <button>0</button>
-                                    <button data-action="decimal">.</button>
-                                    <button data-action="clear">AC</button>
-                                    <button class="key--equal" data-action="calculate">=</button>
+                                <div class="calculator">
+                                    <div id="mensage" class="calculator__display">{{ mensage }}</div>
+                                    <div class="calculator__keys">
+                                        <button class="key--operator" data-action="add">+</button>
+                                        <button class="key--operator" data-action="subtract">-</button>
+                                        <button class="key--operator" data-action="multiply">&times;</button>
+                                        <button class="key--operator" data-action="divide">÷</button>
+                                        <button onclick="insert('7')">7</button>
+                                        <button onclick="insert('8')">8</button>
+                                        <button onclick="insert('9')">9</button>
+                                        <button onclick="insert('4')">4</button>
+                                        <button onclick="insert('5')">5</button>
+                                        <button onclick="insert('6')">6</button>
+                                        <button onclick="insert('1')">1</button>
+                                        <button onclick="insert('2')">2</button>
+                                        <button onclick="insert('3')">3</button>
+                                        <button onclick="insert('0')">0</button>
+                                        <button onclick="insert(',')">.</button>
+                                        <button onclick="clean()">AC</button>
+                                        <button class="key--equal" data-action="calculate">=</button>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                         </p>
+                        <p class="font-italic mb-0">
+                            <div class="container">
+                                    <div class="calculator">
+                                        <div id="mensage" class="calculator__display">{{ mensage }}</div>
+                                        <div class="calculator__keys">
+                                            <button class="key--operator" data-action="add">+</button>
+                                            <button class="key--operator" data-action="subtract">-</button>
+                                            <button class="key--operator" data-action="multiply">&times;</button>
+                                            <button class="key--operator" data-action="divide">÷</button>
+                                            <button onclick="insert('7')">7</button>
+                                            <button onclick="insert('8')">8</button>
+                                            <button onclick="insert('9')">9</button>
+                                            <button onclick="insert('4')">4</button>
+                                            <button onclick="insert('5')">5</button>
+                                            <button onclick="insert('6')">6</button>
+                                            <button onclick="insert('1')">1</button>
+                                            <button onclick="insert('2')">2</button>
+                                            <button onclick="insert('3')">3</button>
+                                            <button onclick="insert('0')">0</button>
+                                            <button onclick="insert(',')">.</button>
+                                            <button onclick="clean()">AC</button>
+                                            <button class="key--equal" data-action="calculate">=</button>
+                                        </div>
+                                    </div>
+                            </div>
+                            </p>
                         <p class="font-italic mb-0"> </p>
                     </div>
                 </div>
@@ -115,7 +144,7 @@
     </div>
     <script type='text/javascript'
         src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
-        <script src="{{ url_for('static',filename='js/calculadora.js') }}"> </script>
+    <script src="{{ url_for('static',filename='js/calculadora.js') }}"> </script>
     <script type='text/javascript' src='#'></script>
     <script type='text/javascript' src='#'></script>
     <script type='text/javascript' src='#'></script>
