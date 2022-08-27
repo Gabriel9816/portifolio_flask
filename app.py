@@ -2,28 +2,24 @@ import datetime
 from flask import Flask,  render_template, request
 
 app = Flask(__name__)
+name_list = []
 
-
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def hello():
-    return render_template('index.html', utc_dt=datetime.datetime.utcnow())
+    teacher = "Alex"
+    students_list = ["Mauricio", "Caio", "Toshiba"]
+    if request.method == "GET":
+        return render_template("index.html", teacher=teacher, students_list=students_list)
+    if request.method == "POST":
+        name = request.form.get('Name')
+        name_list.append(name)
+        return render_template("index.html", teacher=teacher, students_list=students_list, name=name, name_list=name_list)
 
 @app.route("/plano-de-ensino")
 def teaching_plan():
     return render_template("plan.html")
 
-@app.route("/", methods=["GET", "POST"])
-def simple_calculator():
-    if request.method == "GET":
-        return render_template("index.html")
-    if request.method == "POST":
-        expression = request.form.get('expression')
-        expression = expression.replace('÷','/').replace('𝗑', '*').replace(',', '.')
-        try:
-            result = eval(expression)
-            binnary = bin(int(result)).removeprefix('0b')
-            mensage = None
-        except:
-            mensage = 'Verifique se digitou corretamente'
-            result = binnary = None
-        return render_template("index.html", result=result, binnary=binnary, mensage=mensage)
+@app.route("/initial-template")
+def initial_template():
+    return "<h1>Hello, World!</h1>"
+
