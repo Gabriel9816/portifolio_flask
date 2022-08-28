@@ -8,7 +8,6 @@
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/calculadora.css') }}">
 </head>
 
 <body className='snippet-body'>
@@ -31,7 +30,7 @@
                 <div class="px-4 py-3">
                     <h5 class="mb-0">Semana 1</h5>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0"> ■ Apresentação do <a href="/plano-de-ensino">Plano de Ensino</a>
+                        <p class="font-italic mb-0"> ■ Apresentação do <a href="/plan">Plano de Ensino</a>
                         </p>
                         <p class="font-italic mb-0"> ■ Discussão sobre aderencia à Ementa Proposta </p>
                         <p class="font-italic mb-0"> ■ Apresentação das Atividades Avaliativas </p>
@@ -50,7 +49,7 @@
                         <p class="font-italic mb-0"> ■ Introdução teórica e instalação do Flask </p>
                         <p class="font-italic mb-0"> <code>pip install Flask</code></p>
                         <p class="font-italic mb-0"> ■ Introdução prática ao Flask </p>
-                        <p class="font-italic mb-0"> ■ Iniciando o primeiro <a href="/initial-template">App Flask</a>
+                        <p class="font-italic mb-0"> ■ Iniciando o primeiro <a href="/hello">App Flask</a>
                         </p>
                         <p class="font-italic mb-0"> <code>flask run</code></p>
                         <p class="font-italic mb-0"> ■ Retornando mensagem</p>
@@ -68,14 +67,18 @@
                         {% for name in students_list %}
                         <p class="font-italic mb-0"> {{ name }}</p>
                         {% endfor %}
+                    </div>    
+                </div>
+                <div class="px-4">
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p class="font-italic mb-0"> ■ Retornando valores de uma Lista:</p>
                         {% for name in name_list %}
                         <p class="font-italic mb-0"> {{ name }}</p>
                          {% endfor %}
                         <p class="font-italic mb-0">
                             <form action="/" method="POST">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" id="Name" name="Name" autofocus
-                                        placeholder="Insert your name">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="insira um nome">
                                 </div>
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-outline-success">adicionar</button>
@@ -83,75 +86,14 @@
                             </form>
                         </p>
                     </div>
-                </div>
+                </div>  
                 <div class="py-4 px-4">
                     <h5 class="mb-0">Semana 4</h5>
+                    <p class="font-italic mb-0">Conteúdo: Criação de calculadoras</p>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0">
-                            Criar uma calculadora.
-                        </p>
-                        <p class="font-italic mb-0">
-                            Conversão de decimal para binario nessa calculadora.
-                        </p>
-                        <p class="font-italic mb-0">
-                            Criar uma calculadora em aplha numerica capaz de converter qualquer texto em binario.
-                        </p>
-                        <p class="font-italic mb-0">
-                            binario que for gerado seja convertido em um array com 480 colunas.
-                        </p>
-                        <p class="font-italic mb-0">
-                        <div class="container">
-                            <div class="calculator">
-                                <div id="mensage" class="calculator__display">{{ mensage }}</div>
-                                <div class="calculator__keys">
-                                    <button class="key--operator" data-action="add">+</button>
-                                    <button class="key--operator" data-action="subtract">-</button>
-                                    <button class="key--operator" data-action="multiply">&times;</button>
-                                    <button class="key--operator" data-action="divide">÷</button>
-                                    <button onclick="insert('7')">7</button>
-                                    <button onclick="insert('8')">8</button>
-                                    <button onclick="insert('9')">9</button>
-                                    <button onclick="insert('4')">4</button>
-                                    <button onclick="insert('5')">5</button>
-                                    <button onclick="insert('6')">6</button>
-                                    <button onclick="insert('1')">1</button>
-                                    <button onclick="insert('2')">2</button>
-                                    <button onclick="insert('3')">3</button>
-                                    <button onclick="insert('0')">0</button>
-                                    <button onclick="insert(',')">.</button>
-                                    <button onclick="clean()">AC</button>
-                                    <button class="key--equal" data-action="calculate">=</button>
-                                </div>
-                            </div>
-                        </div>
-                        </p>
-                        <p class="font-italic mb-0">
-                        <div class="container">
-                            <div class="calculator">
-                                <div id="mensage" class="calculator__display">{{ mensage }}</div>
-                                <div class="calculator__keys">
-                                    <button class="key--operator" data-action="add">+</button>
-                                    <button class="key--operator" data-action="subtract">-</button>
-                                    <button class="key--operator" data-action="multiply">&times;</button>
-                                    <button class="key--operator" data-action="divide">÷</button>
-                                    <button onclick="insert('7')">7</button>
-                                    <button onclick="insert('8')">8</button>
-                                    <button onclick="insert('9')">9</button>
-                                    <button onclick="insert('4')">4</button>
-                                    <button onclick="insert('5')">5</button>
-                                    <button onclick="insert('6')">6</button>
-                                    <button onclick="insert('1')">1</button>
-                                    <button onclick="insert('2')">2</button>
-                                    <button onclick="insert('3')">3</button>
-                                    <button onclick="insert('0')">0</button>
-                                    <button onclick="insert(',')">.</button>
-                                    <button onclick="clean()">AC</button>
-                                    <button class="key--equal" data-action="calculate">=</button>
-                                </div>
-                            </div>
-                        </div>
-                        </p>
-                        <p class="font-italic mb-0"> </p>
+                        <p class="font-italic mb-0"> ■ <a href="/calculator">Calculadora</a> com conversão de decimal para binario</p>
+                        <p class="font-italic mb-0"> ■ <a href="/initial-template">Calculadora</a> alfa numerica capaz de converter qualquer texto em binario</p>
+                        <p class="font-italic mb-0"> 
                     </div>
                 </div>
             </div>
@@ -159,14 +101,7 @@
     </div>
     <script type='text/javascript'
         src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
-    <script src="{{ url_for('static',filename='js/calculadora.js') }}"> </script>
-    <script type='text/javascript' src='#'></script>
-    <script type='text/javascript' src='#'></script>
-    <script type='text/javascript' src='#'></script>
-    <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
-        myLink.addEventListener('click', function (e) {
-            e.preventDefault();
-        });</script>
+    <!-- <script src="{{ url_for('static',filename='js/calculator.js') }}"> </script> -->
 
 </body>
 
