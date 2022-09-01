@@ -12,43 +12,59 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/calculator.css') }}">
 </head>
 
-<body className='snippet-body'>
-    <div class="container">
-        <div class="calculator ">
-            <div class="calculator__display">0</div>
-            <div class="calculator__keys">
-                <button class="key--operator" data-action="add">+</button>
-                <button class="key--operator" data-action="subtract">-</button>
-                <button class="key--operator" data-action="multiply">&times;</button>
-                <button class="key--operator" data-action="divide">÷</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>0</button>
-                <button data-action="decimal">.</button>
-                <button data-action="clear">AC</button>
-                <button class="key--equal" data-action="calculate">=</button>
-            </div>
+<main>
+    <h3>Calculadora</h3>
+    <form action="/calculator" method="POST" name="Calculator">
+        <div class="calculator__display">
+            <input type="text" id="expression" name="expression" aria-describedby="mensage">
         </div>
+        <div class="calculator__keys">
+            <input type="button" class="key--operator" name="add" value="+" onclick="insert('+')">
+            <input type="button" class="key--operator" name="subtract" value="-" onclick="insert('-')">
+            <input type="button" class="key--operator" name="multiply" value="𝗑" onclick="insert('𝗑')">
+            <input type="button" class="key--operator" name="divide" value="÷" onclick="insert('÷')">
+            <input type="button" class="calculator__keys" name="btn7" value="7" onclick="insert('7')">
+            <input type="button" class="calculator__keys" name="btn8" value="8" onclick="insert('8')">
+            <input type="button" class="calculator__keys" name="btn9" value="9" onclick="insert('9')">
+            <input type="button" class="calculator__keys" name="btn4" value="4" onclick="insert('4')">
+            <input type="button" class="calculator__keys" name="btn5" value="5" onclick="insert('5')">
+            <input type="button" class="calculator__keys" name="btn6" value="6" onclick="insert('6')">
+            <input type="button" class="calculator__keys" name="btn1" value="1" onclick="insert('1')">
+            <input type="button" class="calculator__keys" name="btn2" value="2" onclick="insert('2')">
+            <input type="button" class="calculator__keys" name="btn3" value="3" onclick="insert('3')">
+            <input type="button" class="calculator__keys" name="btn0" value="0" onclick="insert('0')">
+            <input type="button" class="calculator__keys" name="btn," value="," onclick="insert(',')">
+            <input type="button" class="calculator__keys" name="btnAC" value="AC" onclick="clean()">
+            <button class="key--equal" type="submit">=</button>
+        </div>
+
+    </form>
+    {% if mensage %}
+    <div id="mensage" class="expression-text">{{ mensage }}</div>
+    {% endif %}
+    {% if result and binnary %}
+    <div class="result">
+        <p>Resultado: </p>{{ result }}
     </div>
-
-
+    <div class="result borderes">
+        <p>Resultado em binario: </p>{{ binnary }}
+    </div>
+    {% endif %}
+    
     <div class="py-4 text-center">
         <a href="/"><button type="button" class="btn btn-success">Voltar</button></a>
     </div>
+</main>
 
 
 
 
-    <script type='text/javascript'
-        src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
-    <script src="{{ url_for('static',filename='js/calculator.js') }}"> </script>
+
+
+
+<script type='text/javascript'
+    src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+<script src="{{ url_for('static',filename='js/calculator.js') }}"> </script>
 </body>
 
 </html>
