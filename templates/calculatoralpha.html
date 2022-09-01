@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Calculadora alfs</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/calculatoralpha.css') }}">
+</head>
+
+<main>
+    <h3>Calculadora alfa numerica</h3>
+
+    {% if mensage %}
+    <div id="mensage" class="expression-text">Digite apenas valores Alfanuméricos</div>
+    {% endif %}
+
+    <form action="/calculatoralpha" method="POST">
+         <div class="expression-input">
+                    <input type="text" id="expression" name="expression" aria-describedby="mensage" autofocus required>
+                    <label for="expression" onclick="clean()">Limpar</label>
+                </div>
+                {% if mensage %}
+                    <div id="mensage" class="expression-text">Digite apenas valores Alfanuméricos</div>
+                {% endif %}
+                <div class="equal-signal" role="group">
+                    <button type="submit" class="btn btn-outline-primary" id="equal-button">Converter</button>
+                </div>
+            </form>
+            {% if binnary %}
+                <h5>Resultado</h5>
+                <div class="result">
+                    <span id="binnary">{{ binnary }}</span>
+                    <a class="btn btn-success" onclick="copy()">Copiar</a>
+                </div>
+            {% endif %}
+    <div class="py-4 text-center">
+        <a href="/"><button type="button" class="btn btn-success">Voltar</button></a>
+    </div>
+</main>
+
+
+
+
+
+
+
+<script type='text/javascript'
+    src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+<script src="{{ url_for('static',filename='js/calculator.js') }}"> </script>
+</body>
+
+</html>

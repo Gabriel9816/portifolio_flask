@@ -1,0 +1,121 @@
+/* cSpell:words mult */
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+  }
+
+
+
+  h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #222222;
+    font-size: 1.75rem;
+    margin-top: 0;
+    font-weight: 800;
+    line-height: 1.2;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+#expression {
+    background-color: #222222;
+    color: #fff;
+    font-size: 1.714285714em;
+    padding: 0.5em 0.75em;
+    text-align: right;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  #mensage {
+    background-color: #222222;
+    color: #fff;
+    font-size: 1.714285714em;
+    padding: 0.5em 0.75em;
+    text-align: center;
+    border-radius: 10px;
+  }
+label {
+    background-color: #444444;
+    color: #fff;
+    font-size: 1.714285714em;
+    padding: 0.5em 0.75em;
+    text-align: right;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.equal-signal {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+#equal-button {
+    background-color: #002fff;
+    border-radius: 7px;
+    padding: 10px 70px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    transition: background-color 0.3s;
+    user-select: none;
+}
+
+
+
+h5 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #222222;
+    font-size: 1.75rem;
+    margin-top: 0;
+    font-weight: 800;
+    line-height: 1.2;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+.result {
+ background-color: #222222;
+  color: #fff;
+  font-size: 1.714285714em;
+  padding: 0.5em 0.75em;
+  text-align: center;
+}
+#binnary {
+    color: #fff;
+    font-size: 25px;
+    max-width: 525px;
+    overflow: hidden;
+}
+
+
+
+.copy-btn {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+    color: #ccc;
+    transition: color 0.3s;
+    user-select: none;
+    margin-left: 15px;
+}
+.copy-btn:hover {
+    cursor: pointer;
+    color: #fff;
+}
+.copy-btn:active {
+    color: #222;
+}

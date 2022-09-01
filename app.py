@@ -50,3 +50,19 @@ def simple_calculator():
             mensage = 'Verifique se digitou corretamente'
             result = binnary = None
         return render_template("calculator.html", result=result, binnary=binnary, mensage=mensage)
+@app.route("/calculatoralpha", methods=["GET", "POST"])
+def alphanum_calculator():
+    if request.method == "GET":
+        return render_template("calculatoralpha.html")
+    if request.method == "POST":
+        expression = request.form.get('expression')
+        try:
+            binnary = ''.join(format(ord(caractere), '08b') for caractere in expression)
+            size = len(binnary)
+            separator = 480
+            array_2d = [[binnary[n:n + separator]] for n in range(0, size, separator) if n < size]
+            mensage = False
+        except:
+            mensage = True
+            binnary = None
+        return render_template("calculatoralpha.html", binnary=array_2d, mensage=mensage)
