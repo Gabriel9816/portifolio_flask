@@ -1,8 +1,10 @@
 import datetime
 from flask import Flask,  render_template, request
+from random import random
 
 app = Flask(__name__)
 name_list = []
+
 
 
 def remove_duplicates(lista):
@@ -66,3 +68,10 @@ def alphanum_calculator():
             mensage = True
             binnary = None
         return render_template("calculatoralpha.html", binnary=array_2d, mensage=mensage)
+
+@app.route("/pixel")
+def pixel():
+    row = lambda: [f'#{round(random() * 0xffffff):06X}' for _ in range(512)]
+    col = [row() for _ in range(512)]
+    return render_template("pixel.html", colors=col)
+

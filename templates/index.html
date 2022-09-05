@@ -8,6 +8,7 @@
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/pixel.css') }}">
 </head>
 
 <body className='snippet-body'>
@@ -31,29 +32,29 @@
                     <h5 class="mb-0">Semana 1</h5>
                     <p class="font-italic mb-0">Conteúdo: Discussão sobre o plano de ensino e atividades avaliativas</p>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0"> ■ Apresentação do <a href="/plan">Plano de Ensino</a></p>
-                        <p class="font-italic mb-0"> ■ Discussão sobre aderencia à Ementa Proposta </p>
-                        <p class="font-italic mb-0"> ■ Apresentação das Atividades Avaliativas </p>
-                        <p class="font-italic mb-0"> ■ Detalhamento do Cronograma de Atividades </p>
+                        <p class="font-italic mb-0"> ⇝ Apresentação do <a href="/plan">Plano de Ensino</a></p>
+                        <p class="font-italic mb-0"> ⇝ Discussão sobre aderencia à Ementa Proposta </p>
+                        <p class="font-italic mb-0"> ⇝ Apresentação das Atividades Avaliativas </p>
+                        <p class="font-italic mb-0"> ⇝ Detalhamento do Cronograma de Atividades </p>
                     </div>
                 </div>
                 <div class="py-4 px-4">
                     <h5 class="mb-0">Semana 2</h5>
                     <p class="font-italic mb-0">Conteúdo: Introdução ao Python, VENV e Flask</p>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0"> ■ Apresentação a linguagem de programação Python </p>
-                        <p class="font-italic mb-0"> ■ Instalação do Python no Linux </p>
+                        <p class="font-italic mb-0"> ⇝ Apresentação a linguagem de programação Python </p>
+                        <p class="font-italic mb-0"> ⇝ Instalação do Python no Linux </p>
                         <p class="font-italic mb-0"> <code>sudo apt-get install python3.9</code></p>
-                        <p class="font-italic mb-0"> ■ Introdução ao básico do Python</p>
-                        <p class="font-italic mb-0"> ■ Criação do Ambiente Virtual</p>
+                        <p class="font-italic mb-0"> ⇝ Introdução ao básico do Python</p>
+                        <p class="font-italic mb-0"> ⇝ Criação do Ambiente Virtual</p>
                         <p class="font-italic mb-0"> <code>python3.9 -m venv {venv-name}</code></p>
-                        <p class="font-italic mb-0"> ■ Introdução teórica e instalação do Flask </p>
+                        <p class="font-italic mb-0"> ⇝ Introdução teórica e instalação do Flask </p>
                         <p class="font-italic mb-0"> <code>pip install Flask</code></p>
-                        <p class="font-italic mb-0"> ■ Introdução prática ao Flask </p>
-                        <p class="font-italic mb-0"> ■ Iniciando o primeiro <a href="/hello">App Flask</a>
+                        <p class="font-italic mb-0"> ⇝ Introdução prática ao Flask </p>
+                        <p class="font-italic mb-0"> ⇝ Iniciando o primeiro <a href="/hello">App Flask</a>
                         </p>
                         <p class="font-italic mb-0"> <code>flask run</code></p>
-                        <p class="font-italic mb-0"> ■ Retornando mensagem</p>
+                        <p class="font-italic mb-0"> ⇝ Retornando mensagem</p>
                         <p class="font-italic mb-0"> <code>return "mensagem"</code></p>
 
                     </div>
@@ -62,7 +63,7 @@
                     <h5 class="mb-0">Semana 3</h5>
                     <p class="font-italic mb-0">Conteúdo: Manipulação e envio de dados entre Python e HTML</p>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0"> ■ Passagem de dados do Python</p>
+                        <p class="font-italic mb-0"> ⇝ Passagem de dados do Python</p>
                         <p class="font-italic mb-0"> Professor: <span>{{ teacher }}</span> </p>
                         <p class="font-italic mb-0"> Alunos:</p>
                         {% for name in students_list %}
@@ -72,7 +73,7 @@
                 </div>
                 <div class="px-4">
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0"> ■ Retornando valores de uma Lista:</p>
+                        <p class="font-italic mb-0"> ⇝ Retornando valores de uma Lista:</p>
                         {% for name in name_list %}
                         <p class="font-italic mb-0"> {{ name }}</p>
                          {% endfor %}
@@ -92,11 +93,22 @@
                     <h5 class="mb-0">Semana 4</h5>
                     <p class="font-italic mb-0">Conteúdo: Criação de calculadoras</p>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0"> ■ <a href="/calculator">Calculadora</a> com conversão de decimal para binario</p>
-                        <p class="font-italic mb-0"> ■ <a href="/calculatoralpha">Calculadora</a> alfa numerica capaz de converter qualquer texto em binario</p>
-                        <p class="font-italic mb-0"> 
+                        <p class="font-italic mb-0"> ⇝ <a href="/calculator">Calculadora</a> com conversão de decimal para binario</p>
+                        <p class="font-italic mb-0"> ⇝ <a href="/calculatoralpha">Calculadora</a> alfa numerica capaz de converter qualquer texto em binario e mostrar o resultado em grupos de 480 valores</p>
                     </div>
                 </div>
+                <div class="py-4 px-4">
+                    <h5 class="mb-0">Semana 5</h5>
+                    <p class="font-italic mb-0">Conteúdo: Conclusão dos exercícios e Apresentação do Projeto Final</p>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p class="font-italic mb-0"> ⇝ O Projeto Final: aplicacação mobile de comunicação e mensageria por meio de fotos</p>
+                        <p class="font-italic mb-0"> ⇝ Conectar dois ou mais usuários e transmitir as fotos nos formatos .webp, .jpg, .jpeg entre eles</p>
+                        <p class="font-italic mb-0"> ⇝ Fazer upload da foto capturada, enviá-la e fazer download da mesma no outro dispositivo</p>
+                        <p class="font-italic mb-0"> ⇝ Configurações: front-end mobile em Flutter, e back-end em python com flask</p>
+                        <p class="font-italic mb-0"> ⇝ <a href="/pixel">Geração</a>  de um array 2D de 512 linhas por 512 colunas de Divs com 1 pixel de tamanho</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

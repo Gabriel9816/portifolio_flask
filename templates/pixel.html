@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Portifolio</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/arraypixel.css') }}">
+</head>
+
+<body className='snippet-body'>
+    <div class="row py-5 px-4">
+        <div class="col-md-5 mx-auto">
+            <!-- Profile widget -->
+            <div class="bg-white shadow rounded overflow-hidden">
+
+                <div class="py-4 px-4">
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p class="font-italic mb-0"> ⇝ Gerar um array 2D de 512 linhas por 512 colunas de Divs com 1
+                            pixel de tamanho</p>
+                        <div class="content512"></div>
+                        <div class="content512" style="margin-bottom: 50px;">
+                            {% for x in range(512) %}
+                            <div class="row" id="row{{ x }}">
+                                {% for y in range(512) %}
+                                <div class="divs1pixel" id="div1pixel{{ y }}"></div>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="py-4 px-4">
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p class="font-italic mb-0"> ⇝ Gerar um array 2D de 512 linhas por 512 colunas de Divs com 1
+                            pixel de tamanho coloridas</p>
+                        <div class="content512" style="margin-bottom: 50px;">
+                            {% for colors_row in colors %}
+                            <div class="row">
+                                {% for color in colors_row %}
+                                <div class="divs1pixel" style="background-color: {{ color }};"></div>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12 text-center">
+                    <a href="/"><button type="button" class="btn btn-outline-success">Voltar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript'
+        src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+    <script src="{{ url_for('static',filename='js/pixel.js') }}"> </script>
+
+</body>
+
+</html>
