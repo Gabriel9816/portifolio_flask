@@ -75,3 +75,17 @@ def pixel():
     col = [row() for _ in range(512)]
     return render_template("pixel.html", colors=col)
 
+@app.route("/gallery")
+def gallery():
+    return render_template("gallery .html")
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Portifolio</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link rel='stylesheet' href='https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/gallery.css') }}">
+</head>
+
+<body className='snippet-body'>
+    <div class="row py-5 px-4">
+        <div class="col-md-5 mx-auto">
+            <!-- Profile widget -->
+            <div class="bg-white shadow rounded overflow-hidden">
+                <!-- Gallery -->
+                <div class="p-4 rounded shadow-sm bg-light">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                            class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
+
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
+                            class="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" />
+                    </div>
+
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+                            class="w-100 shadow-1-strong rounded mb-4" alt="Mountains in the Clouds" />
+
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                            class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
+                    </div>
+
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"
+                            class="w-100 shadow-1-strong rounded mb-4" alt="Waves at Sea" />
+
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
+                            class="w-100 shadow-1-strong rounded mb-4" alt="Yosemite National Park" />
+                    </div>
+                </div>
+            </div>
+                <!-- Gallery -->
+
+                
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.photo(multiple="multiple")}}
+    {% for error in form.photo.errors %}
+        <span style="color: red;">{{ error }}</span>
+    {% endfor %}
+    {{ form.submit }}
+</form>
+
+{% if success %}
+<br>
+<p>Upload Success!</p>
+{% endif %}
+
+
+
+                <div class="col-md-12 text-center">
+                    <a href="/"><button type="button" class="btn btn-outline-success">Voltar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js'></script>
+    <script type='text/javascript'
+        src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+    <script src="{{ url_for('static',filename='js/gallery.js') }}"> </script>
+
+</body>
+
+</html>
