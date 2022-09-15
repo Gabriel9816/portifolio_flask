@@ -7,6 +7,7 @@
     <title>Portifolio</title>
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/pixel.css') }}">
 </head>
@@ -44,18 +45,17 @@
                     <div class="p-4 rounded shadow-sm bg-light">
                         <p class="font-italic mb-0"> ⇝ Apresentação a linguagem de programação Python </p>
                         <p class="font-italic mb-0"> ⇝ Instalação do Python no Linux </p>
-                        <p class="font-italic mb-0"> <code>sudo apt-get install python3.9</code></p>
+                        <p class="font-italic mb-0" id="p2"> <code>sudo apt-get install python3.9</code>      <button onclick="copyToClipboard('#p2')" class="btn"><i class="fa fa-clone"></i></button>
                         <p class="font-italic mb-0"> ⇝ Introdução ao básico do Python</p>
                         <p class="font-italic mb-0"> ⇝ Criação do Ambiente Virtual</p>
-                        <p class="font-italic mb-0"> <code>python3.9 -m venv {venv-name}</code></p>
+                        <p class="font-italic mb-0" id="p3"> <code>python3.9 -m venv {venv-name}</code> <button onclick="copyToClipboard('#p3')" class="btn"><i class="fa fa-clone"></i></button> </p>
                         <p class="font-italic mb-0"> ⇝ Introdução teórica e instalação do Flask </p>
-                        <p class="font-italic mb-0"> <code>pip install Flask</code></p>
+                        <p class="font-italic mb-0" id="p4"> <code>pip install Flask</code> <button onclick="copyToClipboard('#p4')" class="btn"><i class="fa fa-clone"></i></button> </p>
                         <p class="font-italic mb-0"> ⇝ Introdução prática ao Flask </p>
-                        <p class="font-italic mb-0"> ⇝ Iniciando o primeiro <a href="/hello">App Flask</a>
-                        </p>
-                        <p class="font-italic mb-0"> <code>flask run</code></p>
+                        <p class="font-italic mb-0"> ⇝ Iniciando o primeiro <a href="/hello">App Flask</a></p>
+                        <p class="font-italic mb-0" id="p5"> <code>flask run</code> <button onclick="copyToClipboard('#p5')" class="btn"><i class="fa fa-clone"></i></button> </p>
                         <p class="font-italic mb-0"> ⇝ Retornando mensagem</p>
-                        <p class="font-italic mb-0"> <code>return "mensagem"</code></p>
+                        <p class="font-italic mb-0" id="p6"> <code>return "mensagem"</code> <button onclick="copyToClipboard('#p6')" class="btn"><i class="fa fa-clone"></i></button> </p>
 
                     </div>
                 </div>
@@ -112,8 +112,9 @@
                     <h5 class="mb-0">Semana 6</h5>
                     <p class="font-italic mb-0">Conteúdo: Excercício de Galeria proposto pelo Samsung</p>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <p class="font-italic mb-0"> ⇝ Criar uma <a href="/gallery">galeria</a> de fotos com botão de enviar e um botão de Download se pa instalei pip install flask-reuploaded flask-wtf</p>
-
+                        <p class="font-italic mb-0"> ⇝ Criar uma <a href="/gallery">galeria</a> de fotos com botão de enviar e um botão de Download</p>
+                        <p class="font-italic mb-0"> ⇝ instalado:</p>
+                        <p class="font-italic mb-0" id="p7"> <code>pip3 install opencv-python</code> <button onclick="copyToClipboard('#p7')" class="btn"><i class="fa fa-clone"></i></button> </p>
                     </div>
                 </div>
 
@@ -122,7 +123,7 @@
     </div>
     <script type='text/javascript'
         src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
-    <!-- <script src="{{ url_for('static',filename='js/calculator.js') }}"> </script> -->
+    <script src="{{ url_for('static',filename='js/copy.js') }}"> </script>
 
 </body>
 

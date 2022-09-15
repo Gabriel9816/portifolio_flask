@@ -1,7 +1,9 @@
 import datetime
 from flask import Flask,  render_template, request
 from random import random
-
+import numpy, cv2, os
+from datetime import datetime
+from zipfile import ZipFile
 app = Flask(__name__)
 name_list = []
 
@@ -75,10 +77,35 @@ def pixel():
     col = [row() for _ in range(512)]
     return render_template("pixel.html", colors=col)
 
-@app.route("/gallery")
-def gallery():
-    return render_template("gallery .html")
+@app.route("/gallery", methods=["GET", "POST"])
+def gallery_form():
+    path_prefix = './' if os.path.exists('./static') else 'tads/'
+    path = f'{path_prefix}static/img/gallery'
+    if request.method == "GET":
+        for image_name in os.listdir(path):
+            os.remove(f'{path}/{image_name}')
+        return render_template("gallery.html")
+    if request.method == "POST":
+        try:
+            buffer_file = request.files['input-file-image']
+            bytes_array = numpy.frombuffer(buffer_file.read(), numpy.uint8)
+            image: numpy.ndarray = cv2.imdecode(bytes_array, cv2.IMREAD_COLOR)
+            cv2.imwrite(f'{path}/image_{datetime.now()}.jpg', image)
 
+            if os.path.exists(f'{path}/photos.zip'):
+                os.remove(f'{path}/photos.zip')
+
+            with ZipFile(f'{path}/photos.zip', 'w') as zip_obj:
+                images_list = os.listdir(path)
+                images_list.remove('photos.zip')
+                for image_name in images_list:
+                    zip_obj.write(f'{path}/{image_name}')
+
+            images_list = os.listdir(path)
+            images_list.remove('photos.zip')
+            return render_template("gallery.html", images_list=images_list, zip_file_exists=True)
+        except:
+            return render_template("gallery.html")
 
 
 
