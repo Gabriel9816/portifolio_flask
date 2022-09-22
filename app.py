@@ -107,11 +107,29 @@ def gallery_form():
         except:
             return render_template("gallery.html")
 
+@app.route("/array2d", methods=["GET", "POST"])
+def pixel_transposition():
+    if request.method == "GET":
+        return render_template("array2d.html")
+    if request.method == "POST":
+        try:
+            buffer_file = request.files['input-file-image']
+            bytes_array = numpy.frombuffer(buffer_file.read(), numpy.uint8)
+            image: numpy.ndarray = cv2.imdecode(bytes_array, cv2.IMREAD_COLOR)
+
+            rgb_to_hex = lambda row: [f'#{pixel[2]:02X}{pixel[1]:02X}{pixel[0]:02X}' for pixel in row]
+            matriz = [rgb_to_hex(row) for row in image]
+   
+            return render_template("array2d.html", image=matriz)
+        except:
+            return render_template("array2d.html")
 
 
 
 
-
+@app.route("/teste")
+def teste():
+    return render_template("teste.html")
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
