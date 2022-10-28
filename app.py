@@ -124,8 +124,14 @@ def pixel_transposition():
         except:
             return render_template("array2d.html")
 
-
-
+@app.route("/apiteti", methods=["POST"])
+def apitoken():
+    token = 'abc'
+    if request.method == 'POST':
+        tokenForm = request.form.get('token')
+        if tokenForm ==  token:
+            return render_template("apiteti.html", MSN = "sucess")
+        return render_template("apiteti.html", MSN = "invalid")
 
 @app.route("/teste")
 def teste():

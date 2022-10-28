@@ -9,22 +9,6 @@
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/array2d.css') }}">
-    <script>
-		
-        rotate = 0; // Declaramos uma variável com a rotação 0.
-        
-        document.addEventListener("DOMContentLoaded", function(){ // Usando eventListener, e quando a página for carregada...
-        
-            document.getElementById("next").addEventListener("click", function(){ //Quando houver um clique no botão next..
-            
-                if(rotate== 360){rotate = 0} //Verificamos se o valor da variável rotate é 360, se for zeramos o valor.
-            
-                rotate = rotate + 90; //Fazemoz um incremento de 30, ou seja se antes tinha 0 e incrementamos 30 temos o valor de 30, na próxima execução se temos 30 e incrementamos mais 30, vamos para 60 e assim por diante.
-                
-                document.getElementById("image-pixel").style.transform = "rotate("+rotate+"deg)"; //Acessamos o elemento img e através do style.transform atribuimos o rotate com o valor atual de nossa variável.
-            });
-        
-    </script>
 </head>
 
 <body className='snippet-body'>
@@ -39,14 +23,14 @@
                             Divs com 1
                             pixel de tamanho</p>
 
-                            <form action="/array2d" method="post" enctype="multipart/form-data">
-                                <div class="btn-set">
-                                    <a href="/array2d" class="btn btn-primary">Reiniciar</a>
-                                    <input type="file" class="form-control" name="input-file-image">
-                                    <button type="submit" class="btn btn-success">Importar</button>
-                                </div>
-                            </form>
-                        
+                        <form action="/array2d" method="post" enctype="multipart/form-data">
+                            <div class="btn-set">
+                                <a href="/array2d" class="btn btn-primary">Reiniciar</a>
+                                <input type="file" class="form-control" name="input-file-image">
+                                <button type="submit" class="btn btn-success">Importar</button>
+                            </div>
+                        </form>
+
                         </header>
 
                         {% if image %}
@@ -60,12 +44,6 @@
                             {% endfor %}
                         </main>
                         {% endif %}
-
-
-                        <div class="col-md-12 text-center">
-                            <button id="next">avançar</button> <!--botão avançar-->
-                            <a href="/"><button type="button" class="btn btn-outline-success">Voltar</button></a>
-                        </div>
                     </div>
                 </div>
             </div>
