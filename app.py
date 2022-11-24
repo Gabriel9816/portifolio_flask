@@ -133,6 +133,11 @@ def apitoken():
             return render_template("apiteti.html", MSN = "sucess")
         return render_template("apiteti.html", MSN = "invalid")
 
+
+@app.route("/triangule")
+def triangule():
+    return render_template("triangulo.html")
+
 @app.route("/teste")
 def teste():
     return render_template("teste.html")
