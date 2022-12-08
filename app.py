@@ -1,12 +1,19 @@
 import datetime
 from flask import Flask,  render_template, request
 from random import random
-import numpy, cv2, os
+import numpy
+import cv2
+import os
+import flask_sqlalchemy
+import mysql.connector
 from datetime import datetime
 from zipfile import ZipFile
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 name_list = []
-
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://alex22:Fg#6u2t5HpYT.DT@db4free.net:3306/tads_dw1"
+db = SQLAlchemy(app)
 
 
 def remove_duplicates(lista):
@@ -16,7 +23,6 @@ def remove_duplicates(lista):
             empty_list.append(i)
     empty_list.sort()
     return empty_list
-
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -31,13 +37,16 @@ def hello():
         lista = remove_duplicates(name_list)
         return render_template("index.html", teacher=teacher, students_list=students_list, name=name, name_list=lista)
 
+
 @app.route("/plan")
 def teaching_plan():
     return render_template("plan.html")
 
+
 @app.route("/hello")
 def initial_template():
     return "<h1>Hello, World!</h1>"
+
 
 @app.route("/calculator", methods=["GET", "POST"])
 def simple_calculator():
@@ -45,7 +54,8 @@ def simple_calculator():
         return render_template("calculator.html")
     if request.method == "POST":
         expression = request.form.get('expression')
-        expression = expression.replace('÷','/').replace('𝗑', '*').replace(',', '.')
+        expression = expression.replace(
+            '÷', '/').replace('𝗑', '*').replace(',', '.')
         try:
             result = eval(expression)
             binnary = bin(int(result)).removeprefix('0b')
@@ -54,6 +64,8 @@ def simple_calculator():
             mensage = 'Verifique se digitou corretamente'
             result = binnary = None
         return render_template("calculator.html", result=result, binnary=binnary, mensage=mensage)
+
+
 @app.route("/calculatoralpha", methods=["GET", "POST"])
 def alphanum_calculator():
     if request.method == "GET":
@@ -61,21 +73,26 @@ def alphanum_calculator():
     if request.method == "POST":
         expression = request.form.get('expression')
         try:
-            binnary = ''.join(format(ord(caractere), '08b') for caractere in expression)
+            binnary = ''.join(format(ord(caractere), '08b')
+                              for caractere in expression)
             size = len(binnary)
             separator = 480
-            array_2d = [[binnary[n:n + separator]] for n in range(0, size, separator) if n < size]
+            array_2d = [[binnary[n:n + separator]]
+                        for n in range(0, size, separator) if n < size]
             mensage = False
         except:
             mensage = True
             binnary = None
         return render_template("calculatoralpha.html", binnary=array_2d, mensage=mensage)
 
+
 @app.route("/pixel")
 def pixel():
-    row = lambda: [f'#{round(random() * 0xffffff):06X}' for _ in range(512)]
+    def row(): return [
+        f'#{round(random() * 0xffffff):06X}' for _ in range(512)]
     col = [row() for _ in range(512)]
     return render_template("pixel.html", colors=col)
+
 
 @app.route("/gallery", methods=["GET", "POST"])
 def gallery_form():
@@ -107,6 +124,7 @@ def gallery_form():
         except:
             return render_template("gallery.html")
 
+
 @app.route("/array2d", methods=["GET", "POST"])
 def pixel_transposition():
     if request.method == "GET":
@@ -117,30 +135,57 @@ def pixel_transposition():
             bytes_array = numpy.frombuffer(buffer_file.read(), numpy.uint8)
             image: numpy.ndarray = cv2.imdecode(bytes_array, cv2.IMREAD_COLOR)
 
-            rgb_to_hex = lambda row: [f'#{pixel[2]:02X}{pixel[1]:02X}{pixel[0]:02X}' for pixel in row]
+            def rgb_to_hex(row): return [
+                f'#{pixel[2]:02X}{pixel[1]:02X}{pixel[0]:02X}' for pixel in row]
             matriz = [rgb_to_hex(row) for row in image]
-   
+
             return render_template("array2d.html", image=matriz)
         except:
             return render_template("array2d.html")
+
 
 @app.route("/apiteti", methods=["POST"])
 def apitoken():
     token = 'abc'
     if request.method == 'POST':
         tokenForm = request.form.get('token')
-        if tokenForm ==  token:
-            return render_template("apiteti.html", MSN = "sucess")
-        return render_template("apiteti.html", MSN = "invalid")
+        if tokenForm == token:
+            return render_template("apiteti.html", MSN="sucess")
+        return render_template("apiteti.html", MSN="invalid")
 
 
 @app.route("/triangule")
 def triangule():
     return render_template("triangulo.html")
 
+
 @app.route("/teste")
 def teste():
     return render_template("teste.html")
+
+# ---------------cursos--------------------
+
+
+class curso(db):
+    curso_id = db.Column(db.Integer, primary_key=True)
+    curso_nome = db.Column(db.String(45))
+    curso_descricao = db.Column(db.String(45))
+    curso_carga_horaria = db.Column(db.Integer)
+
+    def __init__(self, curso_id, curso_nome, curso_descricao, curso_carga_horaria):
+        self.curso_id = curso_id
+        self.curso_nome = curso_nome
+        self.curso_descricao = curso_descricao
+        self.curso_carga_horaria = curso_carga_horaria
+
+
+@app.route("/cursos")
+def cursos():
+    lista_de_cursos = cursos.query.all()
+    return render_template("cursos.html", lista_de_cursos=lista_de_cursos)
+
+# ---------------cursos--------------------
+
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
