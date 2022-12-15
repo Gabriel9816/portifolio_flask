@@ -4,8 +4,10 @@ from random import random
 import numpy
 import cv2
 import os
+import pandas as pd
 import flask_sqlalchemy
 import mysql.connector
+from mysql.connector import Error
 from datetime import datetime
 from zipfile import ZipFile
 from flask_sqlalchemy import SQLAlchemy
@@ -154,8 +156,14 @@ def apitoken():
         return render_template("apiteti.html", MSN="invalid")
 
 
-@app.route("/triangule")
+@app.route("/triangule", methods=["GET", "POST"])
 def triangule():
+    if request.method == "GET":
+        return render_template("triangulo.html")
+    if request.method == "POST":
+        ladoA = request.form.get('ladoA')
+        ladoB = request.form.get('ladoB')
+        ladoC = request.form.get('ladoC')
     return render_template("triangulo.html")
 
 
@@ -164,27 +172,40 @@ def teste():
     return render_template("teste.html")
 
 # ---------------cursos--------------------
+# class curso(db):
+#     curso_id = db.Column(db.Integer, primary_key=True)
+#     curso_nome = db.Column(db.String(45))
+#     curso_descricao = db.Column(db.String(45))
+#     curso_carga_horaria = db.Column(db.Integer)
+
+#     def __init__(self, curso_id, curso_nome, curso_descricao, curso_carga_horaria):
+#         self.curso_id = curso_id
+#         self.curso_nome = curso_nome
+#         self.curso_descricao = curso_descricao
+#         self.curso_carga_horaria = curso_carga_horaria
 
 
-class curso(db):
-    curso_id = db.Column(db.Integer, primary_key=True)
-    curso_nome = db.Column(db.String(45))
-    curso_descricao = db.Column(db.String(45))
-    curso_carga_horaria = db.Column(db.Integer)
-
-    def __init__(self, curso_id, curso_nome, curso_descricao, curso_carga_horaria):
-        self.curso_id = curso_id
-        self.curso_nome = curso_nome
-        self.curso_descricao = curso_descricao
-        self.curso_carga_horaria = curso_carga_horaria
-
-
-@app.route("/cursos")
-def cursos():
-    lista_de_cursos = cursos.query.all()
-    return render_template("cursos.html", lista_de_cursos=lista_de_cursos)
+# @app.route("/cursos")
+# def cursos():
+#     lista_de_cursos = cursos.query.all()
+#     return render_template("cursos.html", lista_de_cursos=lista_de_cursos)
 
 # ---------------cursos--------------------
+# ---------------fazendo conexão com o banco --------------------
+@app.route("/bd", methods=["GET", "POST"])
+def create_server_connection(host_name, user_name, user_password):
+    connection = None
+    try:
+        connection = mysql.connector.connect(
+            host=host_name,
+            user=user_name,
+            passwd=user_password
+        )
+        print("MySQL Database connection successful")
+    except Error as err:
+        print(f"Error: '{err}'")
+
+    return connection
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------
