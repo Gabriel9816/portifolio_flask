@@ -1,24 +1,16 @@
-class Triangulo:
-    def __init__(self, ladoA: int, ladoB: int, ladoC: int) -> None:
-        if ((ladoA + ladoB) > ladoC) and ((ladoA + ladoC) > ladoB) and ((ladoB + ladoC) > ladoA):
-            self.a_lado = ladoA
-            self.b_lado = ladoB
-            self.c_lado = ladoC
-            self.type = self._type()
-        else:
-            raise Exception("Os lados não formam triangulo")
+class triangulo:
+    def __init__(self):
+        self.ladoA = 0
+        self.ladoB = 0
+        self.ladoC = 0
 
-    def _type(self) -> str:
-        sides = set((self.a_lado, self.b_lado, self.c_lado))
-        if len(sides) == 1:
-            return 'Equilatero'
-        if len(sides) == 2:
-            return 'Isosceles'
-        if len(sides) == 3:
-            return 'Escaleno'
+    def getPerimetro(self):
+        return self.ladoA+self.ladoB+self.ladoC
 
-    def get_perimetro(self) -> int:
-        return self.a_lado + self.b_lado + self.c_lado
+    def getMaiorLado(self):
+        return max(self.ladoA, self.ladoB, self.ladoC)
 
-    def get_lado_maior(self) -> int:
-        return self
+    def getArea(self):
+        return self.ladoA*self.ladoB*self.ladoC
+
+

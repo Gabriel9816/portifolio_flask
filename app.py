@@ -11,6 +11,7 @@ from mysql.connector import Error
 from datetime import datetime
 from zipfile import ZipFile
 from flask_sqlalchemy import SQLAlchemy
+from triangulo import triangulo
 
 app = Flask(__name__)
 name_list = []
@@ -158,40 +159,27 @@ def apitoken():
 
 @app.route("/triangule", methods=["GET", "POST"])
 def triangule():
-    if request.method == "GET":
-        return render_template("triangulo.html")
-    if request.method == "POST":
-        ladoA = request.form.get('ladoA')
-        ladoB = request.form.get('ladoB')
-        ladoC = request.form.get('ladoC')
-    return render_template("triangulo.html")
+    if request.method == 'GET':
+        return render_template('triangulo.html')
+    if request.method == 'POST':
+       tri = triangulo()
+       tri.ladoA = int(request.form.get('ladoA'))
+       tri.ladoB = int(request.form.get('ladoB'))
+       tri.ladoC = int(request.form.get('ladoC'))
+
+       perimetro = tri.getPerimetro()
+       maiorLado = tri.getMaiorLado()
+       area = tri.getArea()
+       print(perimetro)
+       return render_template('triangulo.html', perimetro=perimetro, area=area, maiorLado=maiorLado, ladoA=tri.ladoA, ladoB=tri.ladoB, ladoC=tri.ladoC)
+
 
 
 @app.route("/teste")
 def teste():
     return render_template("teste.html")
 
-# ---------------cursos--------------------
-# class curso(db):
-#     curso_id = db.Column(db.Integer, primary_key=True)
-#     curso_nome = db.Column(db.String(45))
-#     curso_descricao = db.Column(db.String(45))
-#     curso_carga_horaria = db.Column(db.Integer)
 
-#     def __init__(self, curso_id, curso_nome, curso_descricao, curso_carga_horaria):
-#         self.curso_id = curso_id
-#         self.curso_nome = curso_nome
-#         self.curso_descricao = curso_descricao
-#         self.curso_carga_horaria = curso_carga_horaria
-
-
-# @app.route("/cursos")
-# def cursos():
-#     lista_de_cursos = cursos.query.all()
-#     return render_template("cursos.html", lista_de_cursos=lista_de_cursos)
-
-# ---------------cursos--------------------
-# ---------------fazendo conexão com o banco --------------------
 @app.route("/bd", methods=["GET", "POST"])
 def create_server_connection(host_name, user_name, user_password):
     connection = None

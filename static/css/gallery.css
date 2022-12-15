@@ -47,7 +47,7 @@ h1 {
 	}
 }
 
-h1 {
+h1, h3 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -82,4 +82,13 @@ h1 {
 		-19px 36px 19px rgba(#1f1c1c, 0.1), 
 		-20px 38px 20px rgba(#1f1c1c, 0.1), 
 		-21px 39px 21px rgba(#1f1c1c, 0.1);
+}
+h3 {
+	margin: 0;
+	font-size: 6vw;
+	font-family: "Decovar Regular24";
+	color: rgb(51, 47, 47);
+
+	font-variation-settings: 'SSTR' 1000;
+	animation: loadin 4s infinite linear;
 }
