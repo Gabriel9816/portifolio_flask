@@ -12,6 +12,7 @@ from datetime import datetime
 from zipfile import ZipFile
 from flask_sqlalchemy import SQLAlchemy
 from triangulo import triangulo
+from User import User
 
 app = Flask(__name__)
 name_list = []
@@ -147,32 +148,44 @@ def pixel_transposition():
             return render_template("array2d.html")
 
 
-@app.route("/apiteti", methods=["POST"])
-def apitoken():
-    token = 'abc'
-    if request.method == 'POST':
-        tokenForm = request.form.get('token')
-        if tokenForm == token:
-            return render_template("apiteti.html", MSN="sucess")
-        return render_template("apiteti.html", MSN="invalid")
-
-
 @app.route("/triangule", methods=["GET", "POST"])
 def triangule():
     if request.method == 'GET':
         return render_template('triangulo.html')
     if request.method == 'POST':
-       tri = triangulo()
-       tri.ladoA = int(request.form.get('ladoA'))
-       tri.ladoB = int(request.form.get('ladoB'))
-       tri.ladoC = int(request.form.get('ladoC'))
+        tri = triangulo()
+        tri.ladoA = int(request.form.get('ladoA'))
+        tri.ladoB = int(request.form.get('ladoB'))
+        tri.ladoC = int(request.form.get('ladoC'))
 
-       perimetro = tri.getPerimetro()
-       maiorLado = tri.getMaiorLado()
-       area = tri.getArea()
-       print(perimetro)
-       return render_template('triangulo.html', perimetro=perimetro, area=area, maiorLado=maiorLado, ladoA=tri.ladoA, ladoB=tri.ladoB, ladoC=tri.ladoC)
+        perimetro = tri.getPerimetro()
+        maiorLado = tri.getMaiorLado()
+        area = tri.getArea()
+        print(perimetro)
+        return render_template('triangulo.html', perimetro=perimetro, area=area, maiorLado=maiorLado, ladoA=tri.ladoA, ladoB=tri.ladoB, ladoC=tri.ladoC)
 
+
+@app.route('/car', methods=['POST', 'GET'])
+def carroProperties():
+    if request.method == 'GET':
+        return render_template('car.html')
+    if request.method == 'POST':
+        return render_template('car.html')
+
+
+@app.route('/valid', methods=['POST', 'GET'])
+def validarUser():
+    if request.method == 'GET':
+        return render_template('user.html')
+    if request.method == 'POST':
+        user = User()
+        user.nome = request.form.get('nome')
+        user.password = request.form.get('password')
+        print(user.nome, user.password)
+        validation = user.validate()
+        if validation:
+            return render_template('user.html', MSN="sucess")
+        return render_template('user.html', MSN="invalid")
 
 
 @app.route("/teste")
