@@ -16,8 +16,7 @@ from User import User
 
 app = Flask(__name__)
 name_list = []
-# app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://alex22:Fg#6u2t5HpYT.DT@db4free.net:3306/tads_dw1"
-# db = SQLAlchemy(app)
+
 
 
 def remove_duplicates(lista):
